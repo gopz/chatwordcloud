@@ -1,5 +1,6 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'word_cloud'
+require 'pry'
 include WordScrubber
 
 DATA_DIR = '../data/hangouts-conversation-17.csv'.freeze

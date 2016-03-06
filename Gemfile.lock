@@ -2,12 +2,14 @@ GEM
   remote: https://rubygems.org/
   specs:
     spellingbee (0.0.2)
+    stopwords-filter (0.3.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   spellingbee
+  stopwords-filter
 
 BUNDLED WITH
    1.11.2

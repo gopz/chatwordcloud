@@ -1,6 +1,6 @@
 class WordIsolater
   require 'csv'
-
+  require 'pry'
   UNIXTIME_COL = 0
   TIMESTAMP_COL = 1
   SENDER_ID_COL = 2 

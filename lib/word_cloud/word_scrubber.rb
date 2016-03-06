@@ -2,14 +2,15 @@
 module WordScrubber
   require 'spellingbee'
   require 'stopwords'
-  require 'pry'
   DICT = '../dict/dict.txt'
   LEVEL_1_STOP_WORDS = '../dict/level_1_stop_words.txt'
   LEVEL_2_STOP_WORDS = '../dict/level_2_stop_words.txt'
+  LAZY_CONTRACTIONS = %w(im hasnt havnt ill thats well hes youre id)
 
   def scrubbed_words(words, options = {})
-    scrubbed_words = words
+    scrubbed_words = words.map(&:downcase).map(&:strip)
     (scrubbed_words = strip_punctuation scrubbed_words) unless options[:strip_punctuation] == false
+    (scrubbed_words = remove_numeric scrubbed_words) unless options[:strip_numeric] == false
     unless [0, false].include? options[:strip_stop_words]
       scrubbed_words = strip_stop_words scrubbed_words, options[:strip_stop_words]
     end
@@ -34,7 +35,7 @@ private
     if [nil, 1].include? level 
       f = Stopwords::Filter.new stop_words(LEVEL_1_STOP_WORDS)
     elsif level == 2
-      f = Stopwords::Filter.new stop_words(LEVEL_2_STOP_WORDS)
+      f = Stopwords::Filter.new stop_words(LEVEL_2_STOP_WORDS) + LAZY_CONTRACTIONS
     else
       raise ArgumentError, 'Invalid stop word level', caller
     end
@@ -42,9 +43,12 @@ private
   end
 
   def stop_words(file)
-    stops = File.open(file, 'r')
     lines = []
-    stops.each_line{ |line| lines.push(line) }
-    lines
+    stops = File.open(file, 'r') { |f| f.each_line{ |line| lines.push(line) } }
+    lines.map{ |w| w.delete("\n") }
+  end
+
+  def remove_numeric(words)
+    words.delete_if{ |w| w =~ /^[+-]?(\d*\.)?\d+$/ }
   end
 end

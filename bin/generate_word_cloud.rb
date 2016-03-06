@@ -2,11 +2,13 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'word_cloud'
 include WordScrubber
 
-DATA_DIR = '../data/hangouts-conversation-17.csv'
-OUT_DIR = '../out/'
+DATA_DIR = '../data/hangouts-conversation-17.csv'.freeze
+OUT_DIR = '../out/'.freeze
 wi = WordIsolater.new(DATA_DIR)
-all_scrubbed_words = scrubbed_words wi.all_words 
-File.open("#{OUT_DIR}all.txt", 'w') { |f| f.write(all_scrubbed_words.join(' ')) }
+all_scrubbed_words = scrubbed_words wi.all_words
+File.open("#{OUT_DIR}all.txt", 'w') do |f|
+  f.write(all_scrubbed_words.join(' '))
+end
 
 wi.words_by_person.each do |person, words|
   filename = OUT_DIR + person.downcase.split(' ').join('_') + '.txt'

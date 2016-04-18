@@ -1,0 +1,4 @@
+unixtime;timestamp;sender_id;sender_name;message_type;message;message_html
+1403115881045472;"2014-06-18 14:24:41";105519660812379208737;"Ryan Collins";REGULAR_CHAT_MESSAGE;"A sample message from Ryan"
+1403115964483918;"2014-06-18 14:26:04";103491988956526132192;"Alex Doliner";REGULAR_CHAT_MESSAGE;"A sample message from Alex"
+

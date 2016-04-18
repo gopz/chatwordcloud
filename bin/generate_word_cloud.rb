@@ -13,6 +13,6 @@ end
 
 wi.words_by_person.each do |person, words|
   filename = OUT_DIR + person.downcase.split(' ').join('_') + '.txt'
-  scrubbed_words = scrubbed_words words, strip_stop_words: 2
+  scrubbed_words = scrubbed_words words, strip_stopwords: 2
   File.open(filename, 'w') { |f| f.write(scrubbed_words.join(' ')) }
 end

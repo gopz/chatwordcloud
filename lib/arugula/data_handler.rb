@@ -1,6 +1,5 @@
 class DataHandler
   require 'csv'
-  require 'pry'
 
   UNIXTIME_COL = 0
   TIMESTAMP_COL = 1

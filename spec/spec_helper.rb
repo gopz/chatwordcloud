@@ -1,1 +1,1 @@
-require 'word_cloud'
+require 'arugula'

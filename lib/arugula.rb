@@ -1,3 +1,3 @@
-require 'arugula/data_handler'
-require 'arugula/text_formatter'
-require 'arugula/lexical_processor'
+require_relative 'arugula/data_handler'
+require_relative 'arugula/text_formatter'
+require_relative 'arugula/lexical_processor'

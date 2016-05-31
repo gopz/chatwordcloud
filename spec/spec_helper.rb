@@ -1,1 +1,1 @@
-require 'arugula'
+require 'chitchat'
